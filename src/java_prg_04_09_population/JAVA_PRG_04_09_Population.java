@@ -40,12 +40,17 @@ public class JAVA_PRG_04_09_Population {
         // Number of days to multiply
         int intDays;
         
+        // First do/while for validation gets starting number
+        // of organisms
         do {
             strUserInput = JOptionPane.showInputDialog("How many starting"
                     + " individuals are present?");
             fltPopSize = Float.parseFloat(strUserInput);
         } while (fltPopSize < 2.0f || fltPopSize > 1000000.0f);
         
+        // Second validation loop gets percent increase population growth
+        // and converts from whole number to decimal suitable for use
+        // in the final for loop below
         do {
             strUserInput = JOptionPane.showInputDialog("What percentage does"
                     + " the population grow by in whole numbers?");
@@ -54,22 +59,28 @@ public class JAVA_PRG_04_09_Population {
             fltPercentIncrease = fltPercentIncrease / 100.0f;
         } while(fltPercentIncrease < 0.0f || fltPercentIncrease > 100.0f);
         
+        // Finally, get number of days that the population will grow for
         do {
             strUserInput = JOptionPane.showInputDialog("How many days will"
                     + " the population grow for?");
             intDays = Integer.parseInt(strUserInput);
         } while (intDays < 1 || intDays > 1000000);
         
+        // Based on number of days population grows for, loop through
+        // and perform the following calculation once per day.
         for(int i = 0 ; i < intDays ; i++)
         {
             fltPopSize = fltPopSize + (fltPopSize * fltPercentIncrease);
         }
         
+        // Round and format results for output to user
         strUserInput = String.format("After " + intDays + " days your population "
             + "grew to be %.0f individuals.", fltPopSize);
         
+        // Output message to user
         JOptionPane.showMessageDialog(null, strUserInput);
         
+        // For use with JOptionPane
         System.exit(0);
     }
     
