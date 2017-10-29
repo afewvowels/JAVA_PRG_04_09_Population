@@ -5,6 +5,7 @@
  */
 package java_prg_04_09_population;
 
+import javax.swing.JOptionPane;
 /**
  *
  * @author bluebackdev
@@ -28,7 +29,48 @@ public class JAVA_PRG_04_09_Population {
      */
     public static void main(String[] args)
     {
+        // String to hold user input
+        String strUserInput;
         
+        // Population size
+        float fltPopSize;
+        // Population increase percentage
+        float fltPercentIncrease;
+        
+        // Number of days to multiply
+        int intDays;
+        
+        do {
+            strUserInput = JOptionPane.showInputDialog("How many starting"
+                    + " individuals are present?");
+            fltPopSize = Float.parseFloat(strUserInput);
+        } while (fltPopSize < 2.0f || fltPopSize > 1000000.0f);
+        
+        do {
+            strUserInput = JOptionPane.showInputDialog("What percentage does"
+                    + " the population grow by in whole numbers?");
+            fltPercentIncrease = Float.parseFloat(strUserInput);
+            // Convert from whole number percent to decimal percent
+            fltPercentIncrease = fltPercentIncrease / 100.0f;
+        } while(fltPercentIncrease < 0.0f || fltPercentIncrease > 100.0f);
+        
+        do {
+            strUserInput = JOptionPane.showInputDialog("How many days will"
+                    + " the population grow for?");
+            intDays = Integer.parseInt(strUserInput);
+        } while (intDays < 1 || intDays > 1000000);
+        
+        for(int i = 0 ; i < intDays ; i++)
+        {
+            fltPopSize = fltPopSize + (fltPopSize * fltPercentIncrease);
+        }
+        
+        strUserInput = String.format("After " + intDays + " days your population "
+            + "grew to be %.0f individuals.", fltPopSize);
+        
+        JOptionPane.showMessageDialog(null, strUserInput);
+        
+        System.exit(0);
     }
     
 }
